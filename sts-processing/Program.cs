@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace sts_in_house_processing
+namespace sts_processing
 {
     static class Program
     {

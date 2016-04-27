@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("sts-in-house-processing")]
+[assembly: AssemblyTitle("sts-processing")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("sts-in-house-processing")]
+[assembly: AssemblyProduct("sts-processing")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("92678ece-c676-49d5-8369-fb4c838159f1")]
+[assembly: Guid("6a1ea3e7-2177-425d-a0d8-1008aece0cd3")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sts-maintain-salesrep", "st
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sts-purchasing", "sts-purchasing\sts-purchasing.csproj", "{534C2058-1F56-43D0-9FD1-00F2127D7CE7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sts-processing", "sts-processing\sts-processing.csproj", "{6A1EA3E7-2177-425D-A0D8-1008AECE0CD3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{534C2058-1F56-43D0-9FD1-00F2127D7CE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{534C2058-1F56-43D0-9FD1-00F2127D7CE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{534C2058-1F56-43D0-9FD1-00F2127D7CE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A1EA3E7-2177-425D-A0D8-1008AECE0CD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A1EA3E7-2177-425D-A0D8-1008AECE0CD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A1EA3E7-2177-425D-A0D8-1008AECE0CD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A1EA3E7-2177-425D-A0D8-1008AECE0CD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

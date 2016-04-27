@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace sts_in_house_processing.Properties
+namespace sts_processing.Properties
 {
 
 
