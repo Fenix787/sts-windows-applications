@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sts-maintain-salesrep", "sts-maintain-salesrep\sts-maintain-salesrep.csproj", "{0ACCECA5-4BF1-4E89-BEE7-F150CA99655A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sts-processing", "sts-in-house-processing\sts-processing.csproj", "{92678ECE-C676-49D5-8369-FB4C838159F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sts-purchasing", "sts-purchasing\sts-purchasing.csproj", "{534C2058-1F56-43D0-9FD1-00F2127D7CE7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0ACCECA5-4BF1-4E89-BEE7-F150CA99655A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ACCECA5-4BF1-4E89-BEE7-F150CA99655A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ACCECA5-4BF1-4E89-BEE7-F150CA99655A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ACCECA5-4BF1-4E89-BEE7-F150CA99655A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92678ECE-C676-49D5-8369-FB4C838159F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92678ECE-C676-49D5-8369-FB4C838159F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92678ECE-C676-49D5-8369-FB4C838159F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92678ECE-C676-49D5-8369-FB4C838159F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{534C2058-1F56-43D0-9FD1-00F2127D7CE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{534C2058-1F56-43D0-9FD1-00F2127D7CE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{534C2058-1F56-43D0-9FD1-00F2127D7CE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{534C2058-1F56-43D0-9FD1-00F2127D7CE7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
