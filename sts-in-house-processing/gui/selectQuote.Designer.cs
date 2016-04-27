@@ -1,6 +1,6 @@
 ﻿namespace sts_in_house_processing
 {
-    partial class Form1
+    partial class selectQuote
     {
         /// <summary>
         /// Required designer variable.

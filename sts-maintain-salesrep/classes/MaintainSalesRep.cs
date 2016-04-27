@@ -24,9 +24,9 @@ namespace sts_maintain_salesrep
             return editSalesRep;
         }
 
-        public void updateSalesRep ()
+        public void updateSalesRep (string newPassword)
         {
-            srdb.updateSalesRep(editSalesRep);
+            srdb.updateSalesRep(editSalesRep,newPassword);
         }
     }
 }

@@ -41,31 +41,13 @@ namespace sts_maintain_salesrep
             msrc.editSalesRep.lastName = lastNameTextBox.Text;
             msrc.editSalesRep.username = usernameTextBox.Text;
 
-            // hash password with salt and populate if it has changed
-            if(passwordTextBox.Text != "")
-            {
-                msrc.editSalesRep.password = passwordTextBox.Text;
-                msrc.editSalesRep.password = hashToString(msrc.editSalesRep.password + msrc.editSalesRep.salt);
-            }
-            msrc.updateSalesRep();
-            Close();
+            // update sales rep in database
+            msrc.updateSalesRep(passwordTextBox.Text);
+
+            // transition back to selectSalesRep
+            this.Hide();
             ssr.populateSalesReps();
             ssr.Show();
-        }
-
-        // this function should be moved out of the gui
-        public static string hashToString(string strData)
-        {
-            var message = Encoding.UTF8.GetBytes(strData);
-            SHA256Managed hashString = new SHA256Managed();
-            string hex = "";
-
-            var hashValue = hashString.ComputeHash(message);
-            foreach (byte x in hashValue)
-            {
-                hex += String.Format("{0:x2}", x);
-            }
-            return hex;
         }
 
     }

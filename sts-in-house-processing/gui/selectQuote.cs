@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace sts_in_house_processing
 {
-    public partial class Form1 : Form
+    public partial class selectQuote : Form
     {
-        public Form1()
+        public selectQuote()
         {
             InitializeComponent();
         }

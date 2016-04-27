@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using System.Security.Cryptography;
 
 namespace sts_maintain_salesrep
 {
@@ -43,8 +44,22 @@ namespace sts_maintain_salesrep
             return salesrep;
         }
 
-        public void updateSalesRep(SalesRep updateRep)
+        public void updateSalesRep(SalesRep updateRep, String newPassword)
         {
+            // hash password
+            if (newPassword != "")
+            {
+                var password = Encoding.UTF8.GetBytes(newPassword + updateRep.salt);
+                SHA256Managed hashPass = new SHA256Managed();
+                string hex = "";
+
+                var hashValue = hashPass.ComputeHash(password);
+                foreach (byte x in hashValue)
+                {
+                    hex += String.Format("{0:x2}", x);
+                }
+                updateRep.password = hex;
+            }
             executeUpdate("UPDATE SalesRep SET username='" + updateRep.username + "', first='" + updateRep.firstName + "', last='" + updateRep.lastName + "', password='" + updateRep.password + "' WHERE id='" + updateRep.id + "'");
         }
     }
