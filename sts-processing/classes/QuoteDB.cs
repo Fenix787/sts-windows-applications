@@ -20,10 +20,10 @@ namespace sts_processing
         // initialize values
         private void Initialize()
         {
-            host = "kclarke.co";
-            user = "csci467";
-            pass = "huskies";
-            db_name = "Sales";
+            host = "blitz.cs.niu.edu";
+            user = "db4user";
+            pass = "db4password";
+            db_name = "dbfour";
             table_name = "Quote";
 
             superInitialize();
