@@ -31,14 +31,20 @@ namespace sts_processing
 
         public DataTable getCustomerList()
         {
-            execute("SELECT cust FROM Quote GROUP BY cust");
+            execute("SELECT cust FROM Quote GROUP BY cust;");
+            return getData();
+        }
+
+        public DataTable getQuoteList()
+        {
+            execute("SELECT id,cust FROM Quote ORDER BY id DESC, cust ASC;");
             return getData();
         }
 
         public DataTable getQuoteList(string cust)
         {
             Console.WriteLine(cust);
-            execute("SELECT id FROM Quote WHERE cust='" + cust + "'");
+            execute("SELECT id FROM Quote WHERE cust='" + cust + "';");
             return getData();
         }
 

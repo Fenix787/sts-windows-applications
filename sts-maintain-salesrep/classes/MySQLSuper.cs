@@ -84,6 +84,7 @@ namespace sts_maintain_salesrep
         {
             query = inputQuery;
             cmd = new MySqlCommand(query, db);
+
             adapter = new MySqlDataAdapter();
             adapter.SelectCommand = cmd;
         }
