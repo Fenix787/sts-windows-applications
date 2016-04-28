@@ -32,52 +32,70 @@
             this.customerList = new System.Windows.Forms.ListBox();
             this.quoteListLabel = new System.Windows.Forms.Label();
             this.titleLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // quoteList
             // 
             this.quoteList.FormattingEnabled = true;
-            this.quoteList.Location = new System.Drawing.Point(152, 28);
+            this.quoteList.ItemHeight = 20;
+            this.quoteList.Location = new System.Drawing.Point(228, 43);
+            this.quoteList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.quoteList.Name = "quoteList";
-            this.quoteList.Size = new System.Drawing.Size(120, 173);
+            this.quoteList.Size = new System.Drawing.Size(178, 264);
             this.quoteList.TabIndex = 0;
             // 
             // customerList
             // 
             this.customerList.FormattingEnabled = true;
-            this.customerList.Location = new System.Drawing.Point(12, 28);
+            this.customerList.ItemHeight = 20;
+            this.customerList.Location = new System.Drawing.Point(18, 43);
+            this.customerList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.customerList.Name = "customerList";
-            this.customerList.Size = new System.Drawing.Size(120, 173);
+            this.customerList.Size = new System.Drawing.Size(178, 264);
             this.customerList.TabIndex = 2;
             this.customerList.SelectedValueChanged += new System.EventHandler(this.customerList_SelectedValueChanged);
             // 
             // quoteListLabel
             // 
             this.quoteListLabel.AutoSize = true;
-            this.quoteListLabel.Location = new System.Drawing.Point(152, 13);
+            this.quoteListLabel.Location = new System.Drawing.Point(228, 20);
+            this.quoteListLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.quoteListLabel.Name = "quoteListLabel";
-            this.quoteListLabel.Size = new System.Drawing.Size(76, 13);
+            this.quoteListLabel.Size = new System.Drawing.Size(112, 20);
             this.quoteListLabel.TabIndex = 3;
             this.quoteListLabel.Text = "Select a quote";
             // 
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Location = new System.Drawing.Point(9, 12);
+            this.titleLabel.Location = new System.Drawing.Point(14, 18);
+            this.titleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(98, 13);
+            this.titleLabel.Size = new System.Drawing.Size(145, 20);
             this.titleLabel.TabIndex = 4;
             this.titleLabel.Text = "Select a Sales Rep";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(28, 333);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // selectQuote
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(426, 402);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.quoteListLabel);
             this.Controls.Add(this.customerList);
             this.Controls.Add(this.quoteList);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "selectQuote";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -91,6 +109,7 @@
         private System.Windows.Forms.ListBox customerList;
         private System.Windows.Forms.Label quoteListLabel;
         private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.Button button1;
     }
 }
 
