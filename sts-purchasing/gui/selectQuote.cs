@@ -29,13 +29,15 @@ namespace sts_purchasing
             quoteList.Update();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void discountButton_Click(object sender, EventArgs e)
         {
-            string[] sections = pop.processsComission(1234, "Bell South", 2567863.28);
-            foreach (string section in sections )
-            {
-                Console.WriteLine(section);
-            }
+
+        }
+
+        private void convertButton_Click(object sender, EventArgs e)
+        {
+            string confirm = pop.convertQuote((int)quoteList.SelectedValue, quoteList.SelectedItem.ToString());
+            Console.WriteLine(confirm);
         }
     }
 }

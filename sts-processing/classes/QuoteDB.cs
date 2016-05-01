@@ -48,5 +48,16 @@ namespace sts_processing
             return getData();
         }
 
+        public double getQuoteTotal(int quote)
+        {
+            cmd = new MySqlCommand("SELECT SUM(price*qty) FROM Item WHERE quote='" + quote + "';", db);
+            return (double)cmd.ExecuteScalar();
+        }
+
+        public void convertQuote(int quote, string confirm, double comission)
+        {
+            executeUpdate("UPDATE Quote SET comission='" + comission + "',confirmation='" + confirm + "',converted=NOW() WHERE id='" + quote + "';");
+        }
+
     }
 }

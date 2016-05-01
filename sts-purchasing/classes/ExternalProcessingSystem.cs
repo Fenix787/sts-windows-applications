@@ -17,11 +17,12 @@ namespace sts_purchasing
         {
             try
             {
+                string[] data = new string[3];
                 var client = new UdpClient();
                 client.Connect(host, port);
 
                 // compose message
-                string message = poid.ToString() + ":" +  customer + ":" + total.ToString();
+                string message = poid.ToString("D8") + ":" +  customer + ":" + total.ToString();
 
                 // send message
                 client.Send(Encoding.ASCII.GetBytes(message), Encoding.ASCII.GetByteCount(message));
@@ -35,9 +36,29 @@ namespace sts_purchasing
 
                 // disconnect from server
                 client.Close();
+                Console.WriteLine("rc str | " + rcString);
 
-                // return split response
-                return rcString.Split(':');
+                // isolate the date
+                data[0] = rcString.Substring(0, 28);
+                rcString = rcString.Substring(30, rcString.Length-30);
+
+                // isolate the confirmation number and comission precentage
+                string [] splits = rcString.Split(':');
+                if(splits.Count() > 5)
+                {
+                    data[1] = "-1";
+                    data[2] = "-1";
+                }
+                else
+                {
+                    // store confirmation number
+                    data[1] = splits[1].Substring(1, splits[1].Length - 1);
+
+                    // store comission without precentage
+                    data[2] = splits[3].Substring(1, 2);
+                }
+                return data;
+
             }
             catch (Exception ex)
             {

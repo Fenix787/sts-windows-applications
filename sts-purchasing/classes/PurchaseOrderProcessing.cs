@@ -12,10 +12,23 @@ namespace sts_purchasing
         ExternalProcessingSystem eps;
         sts_processing.QuoteDB qdb;
 
-        public string[] processsComission(int poid, string customer, double total)
+        public string convertQuote(int poid, string customer)
         {
             if (eps == null) { eps = new ExternalProcessingSystem(); }
-            return eps.processsComission(poid, customer, total);
+            double quoteTotal = getQuoteTotal(poid);
+            string[] converted = eps.processsComission(poid, customer, quoteTotal);
+
+            // extract confirmation number
+            string confirm = converted[1];
+
+            // compute comission
+            double comission = quoteTotal * (Convert.ToDouble(converted[2]) / 100);
+
+            // now update quote with comission and confirmation number
+            qdb.convertQuote(poid,confirm,comission);
+
+            // return confirmation number for display
+            return confirm;
         }
 
         public DataTable getQuoteList()
@@ -28,6 +41,12 @@ namespace sts_purchasing
                 row["cust"] = row["id"] + " | " + row["cust"];
             }
             return quotes;
+        }
+
+        public double getQuoteTotal(int quote)
+        {
+            if (qdb == null) { qdb = new sts_processing.QuoteDB(); }
+            return qdb.getQuoteTotal(quote);
         }
     }
 }
