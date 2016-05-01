@@ -11,6 +11,8 @@ namespace sts_processing
 {
     public class QuoteDB : sts_maintain_salesrep.MySQLSuper
     {
+        MySqlDataAdapter itemsAdapter,notesAdapter;
+
         // constructor
         public QuoteDB()
         {
@@ -29,9 +31,9 @@ namespace sts_processing
             superInitialize();
         }
 
-        public DataTable getCustomerList()
+        public DataTable getCustomerList(int status)
         {
-            execute("SELECT cust FROM Quote GROUP BY cust;");
+            execute("SELECT cust FROM Quote WHERE status ='" + status + "' GROUP BY cust;");
             return getData();
         }
 
@@ -47,10 +49,9 @@ namespace sts_processing
             return getData();
         }
 
-        public DataTable getQuoteList(string cust)
+        public DataTable getQuoteList(int status, string cust)
         {
-            Console.WriteLine(cust);
-            execute("SELECT id FROM Quote WHERE cust='" + cust + "';");
+            execute("SELECT id FROM Quote WHERE cust='" + cust + "' AND status='" + status + "';");
             return getData();
         }
 
@@ -78,17 +79,37 @@ namespace sts_processing
 
         public DataSet getItems(int quote)
         {
-            adapter = new MySqlDataAdapter("select id, quote, title AS Title, price as Price, qty as Quantity from Item where quote='" + quote + "'", db);
+            itemsAdapter = new MySqlDataAdapter("SELECT id, quote, title AS Title, price as Price, qty as Quantity from Item where quote='" + quote + "'", db);
             DataSet DS = new DataSet();
-            adapter.Fill(DS);
+            itemsAdapter.Fill(DS);
+            return DS;
+        }
+
+        public DataSet getNotes(int quote)
+        {
+            notesAdapter = new MySqlDataAdapter("SELECT id, quote, subject AS Subject, message as Message from Note WHERE quote='" + quote + "'", db);
+            DataSet DS = new DataSet();
+            notesAdapter.Fill(DS);
             return DS;
         }
 
         public void updateItems(DataTable changes)
         {
-            MySqlCommandBuilder mcb = new MySqlCommandBuilder(adapter);
-            adapter.UpdateCommand = mcb.GetUpdateCommand();
-            adapter.Update(changes);
+            MySqlCommandBuilder mcb = new MySqlCommandBuilder(itemsAdapter);
+            itemsAdapter.UpdateCommand = mcb.GetUpdateCommand();
+            itemsAdapter.Update(changes);
+        }
+
+        public void updateNotes(DataTable changes)
+        {
+            MySqlCommandBuilder mcb = new MySqlCommandBuilder(notesAdapter);
+            notesAdapter.UpdateCommand = mcb.GetUpdateCommand();
+            notesAdapter.Update(changes);
+        }
+
+        public void finalizeQuote(int quote)
+        {
+            executeUpdate("UPDATE Quote SET status='2' WHERE id='" + quote + "';");
         }
 
     }

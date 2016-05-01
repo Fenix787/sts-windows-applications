@@ -26,6 +26,7 @@ namespace sts_processing
             discountTextBox.Text = pqc.getDiscount(quote).ToString();
 
             populateItems();
+            populateNotes();
         }
 
         private void populateItems()
@@ -36,6 +37,16 @@ namespace sts_processing
             itemGridView.Columns[1].Visible = false;
 
             itemGridView.Update();
+        }
+
+        private void populateNotes()
+        {
+            noteGridView.DataSource = pqc.getNotes(quote).Tables[0];
+            // hide id and quote id
+            noteGridView.Columns[0].Visible = false;
+            noteGridView.Columns[1].Visible = false;
+
+            noteGridView.Update();
         }
 
         private void itemGridView_RowValidated(object sender, DataGridViewCellEventArgs e)
@@ -54,6 +65,22 @@ namespace sts_processing
             e.Row.Cells["quote"].Value = quote;
         }
 
+        private void noteGridView_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            DataTable changes = ((DataTable)noteGridView.DataSource).GetChanges();
+
+            if (changes != null)
+            {
+                pqc.updateNotes(changes);
+                ((DataTable)noteGridView.DataSource).AcceptChanges();
+            }
+        }
+
+        private void noteGridView_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
+        {
+            e.Row.Cells["quote"].Value = quote;
+        }
+
         private void discountButton_Click(object sender, EventArgs e)
         {
             pqc.updateDiscount(quote, Convert.ToDouble(discountTextBox.Text));
@@ -61,8 +88,16 @@ namespace sts_processing
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            Hide();
             slq.Show();
+            Close();
+        }
+
+        private void finalizeButton_Click(object sender, EventArgs e)
+        {
+            pqc.finalizeQuote(quote);
+            slq.populateCustomers();
+            slq.Show();
+            Close();
         }
 
         // only numeric inpuit

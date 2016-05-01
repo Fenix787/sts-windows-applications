@@ -66,7 +66,17 @@ namespace sts_maintain_salesrep
         public double getCommissionTotal(int salesrep)
         {
             cmd = new MySqlCommand("SELECT SUM(comission) FROM Quote WHERE salesrep='" + salesrep + "';", db);
-            return (double)cmd.ExecuteScalar();
+            double total = 0;
+            try
+            {
+                total = Convert.ToDouble(cmd.ExecuteScalar());
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Error getting total comission : ");
+                Console.WriteLine(ex.ToString());
+            }
+            return total;
         }
     }
 

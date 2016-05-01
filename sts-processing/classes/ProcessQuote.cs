@@ -14,13 +14,13 @@ namespace sts_processing
         public DataTable getCustomerList()
         {
             if (qdb == null) { qdb = new QuoteDB(); }
-            return qdb.getCustomerList();
+            return qdb.getCustomerList(1);
         }
 
         public DataTable getQuoteList(string cust)
         {
             if (qdb == null) { qdb = new QuoteDB(); }
-            return qdb.getQuoteList(cust);
+            return qdb.getQuoteList(1,cust);
         }
 
         public DataSet getItems(int quote)
@@ -29,10 +29,22 @@ namespace sts_processing
             return qdb.getItems(quote);
         }
 
+        public DataSet getNotes(int quote)
+        {
+            if (qdb == null) { qdb = new QuoteDB(); }
+            return qdb.getNotes(quote);
+        }
+
         public void updateItems(DataTable changes)
         {
             if (qdb == null) { qdb = new QuoteDB(); }
             qdb.updateItems(changes);
+        }
+
+        public void updateNotes(DataTable changes)
+        {
+            if (qdb == null) { qdb = new QuoteDB(); }
+            qdb.updateNotes(changes);
         }
 
         public double getDiscount(int quote)
@@ -45,6 +57,12 @@ namespace sts_processing
         {
             if (qdb == null) { qdb = new sts_processing.QuoteDB(); }
             qdb.updateDiscount(quote, discount);
+        }
+
+        public void finalizeQuote(int quote)
+        {
+            if (qdb == null) { qdb = new sts_processing.QuoteDB(); }
+            qdb.finalizeQuote(quote);
         }
     }
 }

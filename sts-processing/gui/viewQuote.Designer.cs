@@ -34,7 +34,11 @@
             this.discountTextBox = new System.Windows.Forms.TextBox();
             this.discountButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
+            this.noteGridView = new System.Windows.Forms.DataGridView();
+            this.noteLabel = new System.Windows.Forms.Label();
+            this.finalizeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.itemGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.noteGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // itemGridView
@@ -59,7 +63,7 @@
             // discountLabel
             // 
             this.discountLabel.AutoSize = true;
-            this.discountLabel.Location = new System.Drawing.Point(12, 460);
+            this.discountLabel.Location = new System.Drawing.Point(9, 286);
             this.discountLabel.Name = "discountLabel";
             this.discountLabel.Size = new System.Drawing.Size(49, 13);
             this.discountLabel.TabIndex = 7;
@@ -67,7 +71,7 @@
             // 
             // discountTextBox
             // 
-            this.discountTextBox.Location = new System.Drawing.Point(12, 480);
+            this.discountTextBox.Location = new System.Drawing.Point(12, 302);
             this.discountTextBox.Name = "discountTextBox";
             this.discountTextBox.Size = new System.Drawing.Size(100, 20);
             this.discountTextBox.TabIndex = 6;
@@ -75,7 +79,7 @@
             // 
             // discountButton
             // 
-            this.discountButton.Location = new System.Drawing.Point(118, 480);
+            this.discountButton.Location = new System.Drawing.Point(118, 302);
             this.discountButton.Name = "discountButton";
             this.discountButton.Size = new System.Drawing.Size(75, 23);
             this.discountButton.TabIndex = 5;
@@ -85,7 +89,7 @@
             // 
             // backButton
             // 
-            this.backButton.Location = new System.Drawing.Point(694, 480);
+            this.backButton.Location = new System.Drawing.Point(694, 299);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(75, 23);
             this.backButton.TabIndex = 8;
@@ -93,11 +97,43 @@
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
+            // noteGridView
+            // 
+            this.noteGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.noteGridView.Location = new System.Drawing.Point(373, 39);
+            this.noteGridView.Name = "noteGridView";
+            this.noteGridView.Size = new System.Drawing.Size(396, 150);
+            this.noteGridView.TabIndex = 10;
+            this.noteGridView.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.noteGridView_DefaultValuesNeeded);
+            this.noteGridView.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.noteGridView_RowValidated);
+            // 
+            // noteLabel
+            // 
+            this.noteLabel.AutoSize = true;
+            this.noteLabel.Location = new System.Drawing.Point(373, 22);
+            this.noteLabel.Name = "noteLabel";
+            this.noteLabel.Size = new System.Drawing.Size(35, 13);
+            this.noteLabel.TabIndex = 11;
+            this.noteLabel.Text = "Notes";
+            // 
+            // finalizeButton
+            // 
+            this.finalizeButton.Location = new System.Drawing.Point(282, 302);
+            this.finalizeButton.Name = "finalizeButton";
+            this.finalizeButton.Size = new System.Drawing.Size(75, 23);
+            this.finalizeButton.TabIndex = 12;
+            this.finalizeButton.Text = "Finalize";
+            this.finalizeButton.UseVisualStyleBackColor = true;
+            this.finalizeButton.Click += new System.EventHandler(this.finalizeButton_Click);
+            // 
             // viewQuote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(781, 512);
+            this.ClientSize = new System.Drawing.Size(781, 335);
+            this.Controls.Add(this.finalizeButton);
+            this.Controls.Add(this.noteLabel);
+            this.Controls.Add(this.noteGridView);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.discountLabel);
             this.Controls.Add(this.discountTextBox);
@@ -107,6 +143,7 @@
             this.Name = "viewQuote";
             this.Text = "viewQuote";
             ((System.ComponentModel.ISupportInitialize)(this.itemGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.noteGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -120,5 +157,8 @@
         private System.Windows.Forms.TextBox discountTextBox;
         private System.Windows.Forms.Button discountButton;
         private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.DataGridView noteGridView;
+        private System.Windows.Forms.Label noteLabel;
+        private System.Windows.Forms.Button finalizeButton;
     }
 }

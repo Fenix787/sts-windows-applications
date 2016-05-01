@@ -66,9 +66,9 @@
             this.titleLabel.AutoSize = true;
             this.titleLabel.Location = new System.Drawing.Point(9, 12);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(98, 13);
+            this.titleLabel.Size = new System.Drawing.Size(93, 13);
             this.titleLabel.TabIndex = 4;
-            this.titleLabel.Text = "Select a Sales Rep";
+            this.titleLabel.Text = "Select a Customer";
             // 
             // selectButton
             // 

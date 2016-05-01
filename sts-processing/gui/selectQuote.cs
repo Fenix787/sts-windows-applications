@@ -53,6 +53,5 @@ namespace sts_processing
             quoteForm.Show();
         }
 
-
     }
 }

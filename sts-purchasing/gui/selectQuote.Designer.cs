@@ -33,6 +33,8 @@
             this.convertButton = new System.Windows.Forms.Button();
             this.discountTextBox = new System.Windows.Forms.TextBox();
             this.discountLabel = new System.Windows.Forms.Label();
+            this.convertLabel = new System.Windows.Forms.Label();
+            this.quoteListLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // quoteList
@@ -81,11 +83,31 @@
             this.discountLabel.TabIndex = 4;
             this.discountLabel.Text = "Discount";
             // 
+            // convertLabel
+            // 
+            this.convertLabel.AutoSize = true;
+            this.convertLabel.Location = new System.Drawing.Point(263, 206);
+            this.convertLabel.Name = "convertLabel";
+            this.convertLabel.Size = new System.Drawing.Size(81, 13);
+            this.convertLabel.TabIndex = 5;
+            this.convertLabel.Text = "Purchase Order";
+            // 
+            // quoteListLabel
+            // 
+            this.quoteListLabel.AutoSize = true;
+            this.quoteListLabel.Location = new System.Drawing.Point(45, 20);
+            this.quoteListLabel.Name = "quoteListLabel";
+            this.quoteListLabel.Size = new System.Drawing.Size(138, 13);
+            this.quoteListLabel.TabIndex = 6;
+            this.quoteListLabel.Text = "Quotes awaiting conversion";
+            // 
             // selectQuote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(399, 274);
+            this.Controls.Add(this.quoteListLabel);
+            this.Controls.Add(this.convertLabel);
             this.Controls.Add(this.discountLabel);
             this.Controls.Add(this.discountTextBox);
             this.Controls.Add(this.convertButton);
@@ -106,6 +128,8 @@
         private System.Windows.Forms.Button convertButton;
         private System.Windows.Forms.TextBox discountTextBox;
         private System.Windows.Forms.Label discountLabel;
+        private System.Windows.Forms.Label convertLabel;
+        private System.Windows.Forms.Label quoteListLabel;
     }
 }
 

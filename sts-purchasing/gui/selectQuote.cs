@@ -70,5 +70,6 @@ namespace sts_purchasing
                 e.Handled = true;
             }
         }
+
     }
 }
