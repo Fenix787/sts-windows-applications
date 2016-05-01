@@ -62,6 +62,12 @@ namespace sts_maintain_salesrep
             }
             executeUpdate("UPDATE SalesRep SET username='" + updateRep.username + "', first='" + updateRep.firstName + "', last='" + updateRep.lastName + "', password='" + updateRep.password + "' WHERE id='" + updateRep.id + "'");
         }
+
+        public double getCommissionTotal(int salesrep)
+        {
+            cmd = new MySqlCommand("SELECT SUM(comission) FROM Quote WHERE salesrep='" + salesrep + "';", db);
+            return (double)cmd.ExecuteScalar();
+        }
     }
 
     public class SalesRep
@@ -72,6 +78,7 @@ namespace sts_maintain_salesrep
         public string lastName;
         public string salt;
         public string password;
+        public double total;
 
     // populate salesrep
         public SalesRep (MySqlDataReader reader)
@@ -82,6 +89,7 @@ namespace sts_maintain_salesrep
             password = (string)reader["password"];
             firstName = (string)reader["first"];
             lastName = (string)reader["last"];
+            total = 0;
         }
 
     // empty salesrep
@@ -93,6 +101,7 @@ namespace sts_maintain_salesrep
             lastName = "";
             salt = "";
             password = "";
+            total = 0;
         }
     }
 }

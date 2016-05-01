@@ -37,7 +37,15 @@ namespace sts_purchasing
         private void convertButton_Click(object sender, EventArgs e)
         {
             string confirm = pop.convertQuote((int)quoteList.SelectedValue, quoteList.SelectedItem.ToString());
-            Console.WriteLine(confirm);
+            if (confirm == "-1")
+            {
+                MessageBox.Show("Purcahse Order Already Exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                MessageBox.Show("Confirmation number : " + confirm, "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                populateQuoteList();
+            }
         }
     }
 }

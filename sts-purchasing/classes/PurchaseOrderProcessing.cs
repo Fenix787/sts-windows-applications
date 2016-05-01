@@ -15,17 +15,26 @@ namespace sts_purchasing
         public string convertQuote(int poid, string customer)
         {
             if (eps == null) { eps = new ExternalProcessingSystem(); }
+            string confirm;
             double quoteTotal = getQuoteTotal(poid);
             string[] converted = eps.processsComission(poid, customer, quoteTotal);
 
-            // extract confirmation number
-            string confirm = converted[1];
+            Console.WriteLine(converted[1]);
+            if(converted[1] != "-1")
+            {
+                // extract confirmation number
+                confirm = converted[1];
 
-            // compute comission
-            double comission = quoteTotal * (Convert.ToDouble(converted[2]) / 100);
+                // compute comission
+                double comission = quoteTotal * (Convert.ToDouble(converted[2]) / 100);
 
-            // now update quote with comission and confirmation number
-            qdb.convertQuote(poid,confirm,comission);
+                // now update quote with comission and confirmation number
+                qdb.convertQuote(poid, confirm, comission);
+            }
+            else
+            {
+                confirm = "-1";
+            }
 
             // return confirmation number for display
             return confirm;
@@ -34,7 +43,10 @@ namespace sts_purchasing
         public DataTable getQuoteList()
         {
             if (qdb == null) { qdb = new sts_processing.QuoteDB(); }
-            DataTable quotes = qdb.getQuoteList();
+
+            // get only quotes that have been processed
+            DataTable quotes = qdb.getQuoteList(3);
+
             // add id to cust field
             foreach(DataRow row in quotes.Rows)
             {

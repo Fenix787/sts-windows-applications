@@ -41,6 +41,12 @@ namespace sts_processing
             return getData();
         }
 
+        public DataTable getQuoteList(int status)
+        {
+            execute("SELECT id,cust FROM Quote WHERE status ='" + status + "' ORDER BY id DESC, cust ASC;");
+            return getData();
+        }
+
         public DataTable getQuoteList(string cust)
         {
             Console.WriteLine(cust);
@@ -56,7 +62,7 @@ namespace sts_processing
 
         public void convertQuote(int quote, string confirm, double comission)
         {
-            executeUpdate("UPDATE Quote SET comission='" + comission + "',confirmation='" + confirm + "',converted=NOW() WHERE id='" + quote + "';");
+            executeUpdate("UPDATE Quote SET status='3',comission='" + comission + "',confirmation='" + confirm + "',converted=NOW() WHERE id='" + quote + "';");
         }
 
     }

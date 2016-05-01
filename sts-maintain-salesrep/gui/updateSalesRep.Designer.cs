@@ -38,6 +38,8 @@
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.cancelButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
+            this.totalLabel = new System.Windows.Forms.Label();
+            this.totalValueLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // firstNameLabel
@@ -124,11 +126,34 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
+            // totalLabel
+            // 
+            this.totalLabel.AutoSize = true;
+            this.totalLabel.Location = new System.Drawing.Point(16, 120);
+            this.totalLabel.Name = "totalLabel";
+            this.totalLabel.Size = new System.Drawing.Size(89, 13);
+            this.totalLabel.TabIndex = 13;
+            this.totalLabel.Text = "Total Commission";
+            // 
+            // totalValueLabel
+            // 
+            this.totalValueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.totalValueLabel.AutoSize = true;
+            this.totalValueLabel.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.totalValueLabel.Location = new System.Drawing.Point(157, 120);
+            this.totalValueLabel.Name = "totalValueLabel";
+            this.totalValueLabel.Size = new System.Drawing.Size(80, 13);
+            this.totalValueLabel.TabIndex = 14;
+            this.totalValueLabel.Text = "totalValueLabel";
+            this.totalValueLabel.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            // 
             // updateSalesRep
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(267, 198);
+            this.Controls.Add(this.totalValueLabel);
+            this.Controls.Add(this.totalLabel);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.passwordTextBox);
@@ -158,5 +183,7 @@
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Label totalLabel;
+        private System.Windows.Forms.Label totalValueLabel;
     }
 }

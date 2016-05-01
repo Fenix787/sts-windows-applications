@@ -38,25 +38,29 @@ namespace sts_purchasing
                 client.Close();
                 Console.WriteLine("rc str | " + rcString);
 
-                // isolate the date
-                data[0] = rcString.Substring(0, 28);
-                rcString = rcString.Substring(30, rcString.Length-30);
+                // check if po has been submitted
+                if(rcString.IndexOf("already") == -1)
+                {
+                    // isolate the date
+                    data[0] = rcString.Substring(0, 28);
+                    rcString = rcString.Substring(30, rcString.Length - 30);
 
-                // isolate the confirmation number and comission precentage
-                string [] splits = rcString.Split(':');
-                if(splits.Count() > 5)
-                {
-                    data[1] = "-1";
-                    data[2] = "-1";
-                }
-                else
-                {
+                    // isolate the confirmation number and comission precentage
+                    string[] splits = rcString.Split(':');
+                    Console.WriteLine("count : " + splits.Count());
+
                     // store confirmation number
                     data[1] = splits[1].Substring(1, splits[1].Length - 1);
 
                     // store comission without precentage
                     data[2] = splits[3].Substring(1, 2);
                 }
+                else
+                {
+                    data[1] = "-1";
+                    data[2] = "-1";
+                }
+
                 return data;
 
             }

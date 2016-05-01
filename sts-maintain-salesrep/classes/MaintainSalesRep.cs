@@ -21,6 +21,7 @@ namespace sts_maintain_salesrep
         public SalesRep getSalesRep(int id)
         {
             editSalesRep = srdb.getSalesRep(id);
+            editSalesRep.total = srdb.getCommissionTotal(id);
             return editSalesRep;
         }
 
