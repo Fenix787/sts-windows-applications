@@ -45,7 +45,7 @@ namespace sts_purchasing
             if (qdb == null) { qdb = new sts_processing.QuoteDB(); }
 
             // get only quotes that have been processed
-            DataTable quotes = qdb.getQuoteList(3);
+            DataTable quotes = qdb.getQuoteList(2);
 
             // add id to cust field
             foreach(DataRow row in quotes.Rows)
@@ -59,6 +59,18 @@ namespace sts_purchasing
         {
             if (qdb == null) { qdb = new sts_processing.QuoteDB(); }
             return qdb.getQuoteTotal(quote);
+        }
+
+        public double getDiscount(int quote)
+        {
+            if (qdb == null) { qdb = new sts_processing.QuoteDB(); }
+            return qdb.getDiscount(quote);
+        }
+
+        public void updateDiscount(int quote, double discount)
+        {
+            if (qdb == null) { qdb = new sts_processing.QuoteDB(); }
+            qdb.updateDiscount(quote, discount);
         }
     }
 }

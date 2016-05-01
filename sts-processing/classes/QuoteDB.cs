@@ -57,12 +57,38 @@ namespace sts_processing
         public double getQuoteTotal(int quote)
         {
             cmd = new MySqlCommand("SELECT SUM(price*qty) FROM Item WHERE quote='" + quote + "';", db);
-            return (double)cmd.ExecuteScalar();
+            return Convert.ToDouble(cmd.ExecuteScalar());
         }
 
         public void convertQuote(int quote, string confirm, double comission)
         {
             executeUpdate("UPDATE Quote SET status='3',comission='" + comission + "',confirmation='" + confirm + "',converted=NOW() WHERE id='" + quote + "';");
+        }
+
+        public double getDiscount(int quote)
+        {
+            cmd = new MySqlCommand("SELECT discount FROM Quote WHERE id='" + quote + "';", db);
+            return Convert.ToDouble(cmd.ExecuteScalar());
+        }
+
+        public void updateDiscount(int quote, double discount)
+        {
+            executeUpdate("UPDATE Quote SET discount='" + discount + "' WHERE id='" + quote + "';");
+        }
+
+        public DataSet getItems(int quote)
+        {
+            adapter = new MySqlDataAdapter("select id, quote, title AS Title, price as Price, qty as Quantity from Item where quote='" + quote + "'", db);
+            DataSet DS = new DataSet();
+            adapter.Fill(DS);
+            return DS;
+        }
+
+        public void updateItems(DataTable changes)
+        {
+            MySqlCommandBuilder mcb = new MySqlCommandBuilder(adapter);
+            adapter.UpdateCommand = mcb.GetUpdateCommand();
+            adapter.Update(changes);
         }
 
     }

@@ -43,5 +43,16 @@ namespace sts_processing
             DataRowView drv = customerList.SelectedItem as DataRowView;
             populateQuotes(drv.Row["cust"] as string);
         }
+
+        private void selectButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DataRowView drv = quoteList.SelectedItem as DataRowView;
+            viewQuote quoteForm = new viewQuote(pqc,this,(int) drv.Row["id"]);
+            quoteForm.Update();
+            quoteForm.Show();
+        }
+
+
     }
 }

@@ -31,7 +31,8 @@ namespace sts_purchasing
 
         private void discountButton_Click(object sender, EventArgs e)
         {
-
+            DataRowView drv = quoteList.SelectedItem as DataRowView;
+            pop.updateDiscount((int)drv.Row["id"],Convert.ToDouble(discountTextBox.Text));
         }
 
         private void convertButton_Click(object sender, EventArgs e)
@@ -45,6 +46,28 @@ namespace sts_purchasing
             {
                 MessageBox.Show("Confirmation number : " + confirm, "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 populateQuoteList();
+            }
+        }
+
+        private void quoteList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataRowView drv = quoteList.SelectedItem as DataRowView;
+            discountTextBox.Text = pop.getDiscount((int)drv.Row["id"]).ToString();
+        }
+
+        // only numeric inpuit
+        private void discountTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
             }
         }
     }
