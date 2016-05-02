@@ -26,7 +26,7 @@ namespace sts_maintain_salesrep
             firstNameTextBox.Text = msrc.editSalesRep.firstName;
             lastNameTextBox.Text = msrc.editSalesRep.lastName;
             usernameTextBox.Text = msrc.editSalesRep.username;
-            totalValueLabel.Text = "$" + msrc.editSalesRep.total.ToString();
+            totalValueLabel.Text = "$" + msrc.editSalesRep.total.ToString("#,###.##");
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

@@ -23,6 +23,8 @@ namespace sts_processing
             slq = inslq;
             quote = inquote;
 
+            noteGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
             discountTextBox.Text = pqc.getDiscount(quote).ToString();
 
             populateItems();
@@ -45,6 +47,8 @@ namespace sts_processing
             // hide id and quote id
             noteGridView.Columns[0].Visible = false;
             noteGridView.Columns[1].Visible = false;
+
+            noteGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             noteGridView.Update();
         }
@@ -84,6 +88,7 @@ namespace sts_processing
         private void discountButton_Click(object sender, EventArgs e)
         {
             pqc.updateDiscount(quote, Convert.ToDouble(discountTextBox.Text));
+            MessageBox.Show("Discount updated");
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -113,6 +118,31 @@ namespace sts_processing
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void itemGridView_CellValidating(object sender,
+        DataGridViewCellValidatingEventArgs e)
+        {
+            DataGridViewColumn col = itemGridView.Columns[e.ColumnIndex] as DataGridViewColumn;
+
+            if (col.Name.ToLower() == "price" || col.Name.ToLower() == "quantity")
+            {
+                DataGridViewTextBoxCell cell = itemGridView[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
+                if (cell != null)
+                {
+                    char[] chars = e.FormattedValue.ToString().ToCharArray();
+                    foreach (char c in chars)
+                    {
+                        if (char.IsDigit(c) == false)
+                        {
+                            cell.Value = "0";
+                            itemGridView.RefreshEdit();
+                            e.Cancel = true;
+                            MessageBox.Show("You must enter digits only");
+                        }
+                    }
+                }
             }
         }
     }

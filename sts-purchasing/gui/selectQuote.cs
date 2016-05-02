@@ -33,6 +33,7 @@ namespace sts_purchasing
         {
             DataRowView drv = quoteList.SelectedItem as DataRowView;
             pop.updateDiscount((int)drv.Row["id"],Convert.ToDouble(discountTextBox.Text));
+            MessageBox.Show("Discount updated.");
         }
 
         private void convertButton_Click(object sender, EventArgs e)

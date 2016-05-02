@@ -38,43 +38,50 @@
             // quoteList
             // 
             this.quoteList.FormattingEnabled = true;
-            this.quoteList.Location = new System.Drawing.Point(152, 28);
+            this.quoteList.ItemHeight = 20;
+            this.quoteList.Location = new System.Drawing.Point(228, 43);
+            this.quoteList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.quoteList.Name = "quoteList";
-            this.quoteList.Size = new System.Drawing.Size(120, 173);
+            this.quoteList.Size = new System.Drawing.Size(178, 264);
             this.quoteList.TabIndex = 0;
             // 
             // customerList
             // 
             this.customerList.FormattingEnabled = true;
-            this.customerList.Location = new System.Drawing.Point(12, 28);
+            this.customerList.ItemHeight = 20;
+            this.customerList.Location = new System.Drawing.Point(18, 43);
+            this.customerList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.customerList.Name = "customerList";
-            this.customerList.Size = new System.Drawing.Size(120, 173);
+            this.customerList.Size = new System.Drawing.Size(178, 264);
             this.customerList.TabIndex = 2;
             this.customerList.SelectedValueChanged += new System.EventHandler(this.customerList_SelectedValueChanged);
             // 
             // quoteListLabel
             // 
             this.quoteListLabel.AutoSize = true;
-            this.quoteListLabel.Location = new System.Drawing.Point(152, 13);
+            this.quoteListLabel.Location = new System.Drawing.Point(228, 20);
+            this.quoteListLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.quoteListLabel.Name = "quoteListLabel";
-            this.quoteListLabel.Size = new System.Drawing.Size(76, 13);
+            this.quoteListLabel.Size = new System.Drawing.Size(112, 20);
             this.quoteListLabel.TabIndex = 3;
             this.quoteListLabel.Text = "Select a quote";
             // 
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Location = new System.Drawing.Point(9, 12);
+            this.titleLabel.Location = new System.Drawing.Point(14, 18);
+            this.titleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(93, 13);
+            this.titleLabel.Size = new System.Drawing.Size(140, 20);
             this.titleLabel.TabIndex = 4;
             this.titleLabel.Text = "Select a Customer";
             // 
             // selectButton
             // 
-            this.selectButton.Location = new System.Drawing.Point(102, 226);
+            this.selectButton.Location = new System.Drawing.Point(153, 348);
+            this.selectButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.selectButton.Name = "selectButton";
-            this.selectButton.Size = new System.Drawing.Size(75, 23);
+            this.selectButton.Size = new System.Drawing.Size(112, 35);
             this.selectButton.TabIndex = 5;
             this.selectButton.Text = "Select";
             this.selectButton.UseVisualStyleBackColor = true;
@@ -82,14 +89,15 @@
             // 
             // selectQuote
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(426, 402);
             this.Controls.Add(this.selectButton);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.quoteListLabel);
             this.Controls.Add(this.customerList);
             this.Controls.Add(this.quoteList);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "selectQuote";
             this.Text = "Form1";
             this.ResumeLayout(false);
