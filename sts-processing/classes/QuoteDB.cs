@@ -91,7 +91,7 @@ namespace sts_processing
 
         public DataSet getItems(int quote)
         {
-            itemsAdapter = new MySqlDataAdapter("SELECT id, quote, title AS Title, price as Price, qty as Quantity from Item where quote='" + quote + "'", db);
+            itemsAdapter = new MySqlDataAdapter("SELECT id, quote, title AS Title, qty as Quantity, price as Price from Item where quote='" + quote + "'", db);
             DataSet DS = new DataSet();
             itemsAdapter.Fill(DS);
             return DS;
