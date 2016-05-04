@@ -33,7 +33,7 @@ namespace sts_purchasing
         {
             DataRowView drv = quoteList.SelectedItem as DataRowView;
             pop.updateDiscount((int)drv.Row["id"],Convert.ToDouble(discountTextBox.Text));
-            MessageBox.Show("Discount updated.");
+            MessageBox.Show("Discount updated","Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void convertButton_Click(object sender, EventArgs e)
@@ -41,7 +41,8 @@ namespace sts_purchasing
             string confirm = pop.convertQuote((int)quoteList.SelectedValue, quoteList.SelectedItem.ToString());
             if (confirm == "-1")
             {
-                MessageBox.Show("Purcahse Order Already Exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Purcahse Order already exists, no comission or confirmation number will be saved, please contact support.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                populateQuoteList();
             }
             else
             {

@@ -13,40 +13,55 @@ namespace sts_maintain_salesrep
 {
     public partial class updateSalesRep : Form
     {
-        selectSalesRep ssr;
-        MaintainSalesRep msrc;
+        public selectSalesRep ssr;
+        public MaintainSalesRep msrc;
+        public SalesRep editSalesRep;
 
         public updateSalesRep(MaintainSalesRep inmsrc, selectSalesRep inssr)
         {
             InitializeComponent();
             ssr = inssr;
             msrc = inmsrc;
+        }
+
+        public void populateSalesRep(int inSalesRep, string title)
+        {
+            Text = title;
+
+            // get all data about salesrep
+            editSalesRep = msrc.getSalesRep(inSalesRep);
 
             // populate form data
-            firstNameTextBox.Text = msrc.editSalesRep.firstName;
-            lastNameTextBox.Text = msrc.editSalesRep.lastName;
-            usernameTextBox.Text = msrc.editSalesRep.username;
-            totalValueLabel.Text = "$" + msrc.editSalesRep.total.ToString("#,###.##");
+            firstNameTextBox.Text = editSalesRep.firstName;
+            lastNameTextBox.Text = editSalesRep.lastName;
+            usernameTextBox.Text = editSalesRep.username;
+            if (editSalesRep.total != 0)
+            {
+                totalValueLabel.Text = "$" + editSalesRep.total.ToString("#,###.##");
+            }
+            else
+            {
+                totalValueLabel.Text = "$0.00";
+            }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            Close();
-            ssr.Show();
+            Hide();
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
             // populate cleartext data
-            msrc.editSalesRep.firstName = firstNameTextBox.Text;
-            msrc.editSalesRep.lastName = lastNameTextBox.Text;
-            msrc.editSalesRep.username = usernameTextBox.Text;
+            editSalesRep.firstName = firstNameTextBox.Text;
+            editSalesRep.lastName = lastNameTextBox.Text;
+            editSalesRep.username = usernameTextBox.Text;
 
             // update sales rep in database
-            msrc.updateSalesRep(passwordTextBox.Text);
+            msrc.updateSalesRep(editSalesRep,passwordTextBox.Text);
 
             // transition back to selectSalesRep
-            this.Hide();
+            Hide();
             ssr.populateSalesReps();
             ssr.Show();
         }

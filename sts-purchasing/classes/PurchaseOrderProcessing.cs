@@ -17,23 +17,24 @@ namespace sts_purchasing
             if (eps == null) { eps = new ExternalProcessingSystem(); }
             string confirm;
             double quoteTotal = getQuoteTotal(poid);
-            string[] converted = eps.processsComission(poid, customer, quoteTotal);
+            string[] converted = eps.processsCommission(poid, customer, quoteTotal);
 
-            Console.WriteLine(converted[1]);
+            // if external processing system returns valid confirmation number
             if(converted[1] != "-1")
             {
                 // extract confirmation number
                 confirm = converted[1];
 
                 // compute comission
-                double comission = quoteTotal * (Convert.ToDouble(converted[2]) / 100);
+                double commission = quoteTotal * (Convert.ToDouble(converted[2]) / 100);
 
                 // now update quote with comission and confirmation number
-                qdb.convertQuote(poid, confirm, comission);
+                qdb.convertQuote(poid, Convert.ToInt32(confirm), commission);
             }
             else
             {
                 confirm = "-1";
+                qdb.convertQuote(poid, 0, 0);
             }
 
             // return confirmation number for display

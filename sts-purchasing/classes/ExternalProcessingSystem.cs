@@ -13,7 +13,7 @@ namespace sts_purchasing
         string host = "blitz.cs.niu.edu";
         Int32 port = 4446;
 
-        public string[] processsComission(int poid, string customer, double total)
+        public string[] processsCommission(int poid, string customer, double total)
         {
             try
             {
@@ -21,7 +21,7 @@ namespace sts_purchasing
                 var client = new UdpClient();
                 client.Connect(host, port);
 
-                // compose message
+                // compose message with leading 0s attached to quote id
                 string message = poid.ToString("D8") + ":" +  customer + ":" + total.ToString();
 
                 // send message
@@ -36,7 +36,6 @@ namespace sts_purchasing
 
                 // disconnect from server
                 client.Close();
-                Console.WriteLine("rc str | " + rcString);
 
                 // check if po has been submitted
                 if(rcString.IndexOf("already") == -1)
@@ -47,7 +46,6 @@ namespace sts_purchasing
 
                     // isolate the confirmation number and comission precentage
                     string[] splits = rcString.Split(':');
-                    Console.WriteLine("count : " + splits.Count());
 
                     // store confirmation number
                     data[1] = splits[1].Substring(1, splits[1].Length - 1);

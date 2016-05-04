@@ -15,11 +15,19 @@ namespace sts_processing
         // create controller
         public ProcessQuote pqc = new ProcessQuote();
 
+        // create viewQuote form
+        public viewQuote quoteForm;
+
+        private string selectedCustomer;
+
         public selectQuote()
         {
             InitializeComponent();
             populateCustomers();
-        }
+
+            // create viewQuote form
+            quoteForm = new viewQuote(pqc, this);
+    }
 
         public void populateCustomers()
         {
@@ -31,7 +39,7 @@ namespace sts_processing
 
         public void populateQuotes(string cust)
         {
-
+            selectedCustomer = cust;
             quoteList.DataSource = pqc.getQuoteList(cust);
             quoteList.DisplayMember = "id";
             quoteList.ValueMember = "id";
@@ -46,9 +54,9 @@ namespace sts_processing
 
         private void selectButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
             DataRowView drv = quoteList.SelectedItem as DataRowView;
-            viewQuote quoteForm = new viewQuote(pqc,this,(int) drv.Row["id"]);
+            if (quoteForm.IsDisposed) { quoteForm = new viewQuote(pqc, this); }
+            quoteForm.populateQuote((int) drv.Row["id"], (drv.Row["id"].ToString() + " | " + selectedCustomer));
             quoteForm.Update();
             quoteForm.Show();
         }

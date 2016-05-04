@@ -15,10 +15,15 @@ namespace sts_maintain_salesrep
         // create controller
         public MaintainSalesRep msrc = new MaintainSalesRep();
 
+        // create updateSalesRep
+        public updateSalesRep updateForm;
+
         public selectSalesRep()
         {
             InitializeComponent();
             populateSalesReps();
+
+            updateForm = new updateSalesRep(msrc,this);
         }
 
         public void populateSalesReps()
@@ -31,9 +36,11 @@ namespace sts_maintain_salesrep
 
         private void selectButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            msrc.getSalesRep((int)salesRepList.SelectedValue);
-            updateSalesRep updateForm = new updateSalesRep(msrc,this);
+            DataRowView drv = salesRepList.SelectedItem as DataRowView;
+            if (updateForm.IsDisposed) { updateForm = new updateSalesRep(msrc, this); }
+
+
+            updateForm.populateSalesRep((int)drv.Row["id"], drv.Row["username"].ToString());
             updateForm.Update();
             updateForm.Show();
         }

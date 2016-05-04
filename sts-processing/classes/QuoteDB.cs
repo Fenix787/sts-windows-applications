@@ -57,11 +57,15 @@ namespace sts_processing
 
         public double getQuoteTotal(int quote)
         {
+            // get item totals
             cmd = new MySqlCommand("SELECT SUM(price*qty) FROM Item WHERE quote='" + quote + "';", db);
-            return Convert.ToDouble(cmd.ExecuteScalar());
+            double total = Convert.ToDouble(cmd.ExecuteScalar());
+            cmd = new MySqlCommand("SELECT discount FROM Quote WHERE id='" + quote + "';", db);
+            total -= Convert.ToDouble(cmd.ExecuteScalar());
+            return total;
         }
 
-        public void convertQuote(int quote, string confirm, double comission)
+        public void convertQuote(int quote, int confirm, double comission)
         {
             executeUpdate("UPDATE Quote SET status='3',comission='" + comission + "',confirmation='" + confirm + "',converted=NOW() WHERE id='" + quote + "';");
         }

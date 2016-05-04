@@ -17,6 +17,12 @@ namespace sts_processing
             return qdb.getCustomerList(1);
         }
 
+        public double getQuoteTotal(int quote)
+        {
+            if (qdb == null) { qdb = new QuoteDB(); }
+            return qdb.getQuoteTotal(quote);
+        }
+
         public DataTable getQuoteList(string cust)
         {
             if (qdb == null) { qdb = new QuoteDB(); }

@@ -31,7 +31,7 @@ namespace sts_maintain_salesrep
 
         public DataTable getSalesRepList()
         {
-            execute("SELECT id,username FROM SalesRep");
+            execute("SELECT id,username,first,last FROM SalesRep where id!='-1'");
             return getData();
         }
 
@@ -41,6 +41,9 @@ namespace sts_maintain_salesrep
             MySqlDataReader reader = getRow();
             SalesRep salesrep = new SalesRep(reader);
             reader.Close();
+
+            // populate total commission
+            salesrep.total = getCommissionTotal(id);
             return salesrep;
         }
 
@@ -66,7 +69,7 @@ namespace sts_maintain_salesrep
         public double getCommissionTotal(int salesrep)
         {
             cmd = new MySqlCommand("SELECT SUM(comission) FROM Quote WHERE salesrep='" + salesrep + "';", db);
-            double total = 0;
+            double total = 0.0;
             try
             {
                 total = Convert.ToDouble(cmd.ExecuteScalar());
@@ -99,7 +102,7 @@ namespace sts_maintain_salesrep
             password = (string)reader["password"];
             firstName = (string)reader["first"];
             lastName = (string)reader["last"];
-            total = 0;
+            total = 0.0;
         }
 
     // empty salesrep

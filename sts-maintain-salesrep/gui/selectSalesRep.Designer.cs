@@ -46,9 +46,9 @@
             // salesRepList
             // 
             this.salesRepList.FormattingEnabled = true;
-            this.salesRepList.Location = new System.Drawing.Point(79, 25);
+            this.salesRepList.Location = new System.Drawing.Point(34, 25);
             this.salesRepList.Name = "salesRepList";
-            this.salesRepList.Size = new System.Drawing.Size(120, 173);
+            this.salesRepList.Size = new System.Drawing.Size(213, 186);
             this.salesRepList.TabIndex = 1;
             // 
             // titleLabel
@@ -69,7 +69,7 @@
             this.Controls.Add(this.salesRepList);
             this.Controls.Add(this.selectButton);
             this.Name = "selectSalesRep";
-            this.Text = "Modify Sales Rep";
+            this.Text = "HR Dept.";
             this.ResumeLayout(false);
             this.PerformLayout();
 

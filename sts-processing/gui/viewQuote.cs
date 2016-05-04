@@ -16,19 +16,32 @@ namespace sts_processing
         selectQuote slq;
         int quote;
 
-        public viewQuote(ProcessQuote inpqc, selectQuote inslq, int inquote)
+        public viewQuote(ProcessQuote inpqc, selectQuote inslq)
         {
             InitializeComponent();
             pqc = inpqc;
             slq = inslq;
-            quote = inquote;
 
+            // setup note grid view
             noteGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            noteGridView.RowTemplate.Height = 50;
 
+        }
+
+        public void populateQuote(int inquote,string title)
+        {
+            quote = inquote;
+            Text = title;
             discountTextBox.Text = pqc.getDiscount(quote).ToString();
 
             populateItems();
             populateNotes();
+            populateTotal();
+        }
+
+        private void populateTotal()
+        {
+            totalLabel.Text = "$" + pqc.getQuoteTotal(quote).ToString("#,###.##");
         }
 
         private void populateItems()
@@ -59,8 +72,12 @@ namespace sts_processing
 
             if (changes != null)
             {
+                // commit changes to database
                 pqc.updateItems(changes);
                 ((DataTable)itemGridView.DataSource).AcceptChanges();
+
+                // update quote total incase items qty or price has been modified
+                populateTotal();
             }
         }
 
@@ -75,6 +92,7 @@ namespace sts_processing
 
             if (changes != null)
             {
+                // commit changes to database
                 pqc.updateNotes(changes);
                 ((DataTable)noteGridView.DataSource).AcceptChanges();
             }
@@ -88,21 +106,22 @@ namespace sts_processing
         private void discountButton_Click(object sender, EventArgs e)
         {
             pqc.updateDiscount(quote, Convert.ToDouble(discountTextBox.Text));
-            MessageBox.Show("Discount updated");
+            populateTotal();
+            MessageBox.Show("Discount updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
         }
 
-        private void backButton_Click(object sender, EventArgs e)
+        private void closeButton_Click(object sender, EventArgs e)
         {
-            slq.Show();
-            Close();
+            Hide();
         }
 
         private void finalizeButton_Click(object sender, EventArgs e)
         {
             pqc.finalizeQuote(quote);
             slq.populateCustomers();
-            slq.Show();
-            Close();
+            slq.Update();
+            Hide();
         }
 
         // only numeric inpuit
@@ -126,21 +145,24 @@ namespace sts_processing
         {
             DataGridViewColumn col = itemGridView.Columns[e.ColumnIndex] as DataGridViewColumn;
 
-            if (col.Name.ToLower() == "price" || col.Name.ToLower() == "quantity")
+            if (col.Name== "Price" || col.Name == "Quantity")
             {
                 DataGridViewTextBoxCell cell = itemGridView[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
                 if (cell != null)
                 {
                     char[] chars = e.FormattedValue.ToString().ToCharArray();
+                    bool decimalFlag = false;
                     foreach (char c in chars)
                     {
-                        if (char.IsDigit(c) == false)
+                        if ((char.IsDigit(c) == false && (c != '.' || col.Name == "Quantity")) || (c == '.' && (decimalFlag == true || chars.Count() == 1)))
                         {
                             cell.Value = "0";
                             itemGridView.RefreshEdit();
                             e.Cancel = true;
-                            MessageBox.Show("You must enter digits only");
+                            MessageBox.Show("This field only accepts numeric input","Input Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
                         }
+                        if (c == '.') { decimalFlag = true; }
                     }
                 }
             }

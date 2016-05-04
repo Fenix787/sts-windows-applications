@@ -115,7 +115,7 @@
             this.Controls.Add(this.quoteList);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "selectQuote";
-            this.Text = "Form1";
+            this.Text = "Purchasing Dept.";
             this.ResumeLayout(false);
             this.PerformLayout();
 
