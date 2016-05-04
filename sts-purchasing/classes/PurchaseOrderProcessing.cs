@@ -73,5 +73,17 @@ namespace sts_purchasing
             if (qdb == null) { qdb = new sts_processing.QuoteDB(); }
             qdb.updateDiscount(quote, discount);
         }
+
+        public string getQuoteEmail(int quote)
+        {
+            if (qdb == null) { qdb = new sts_processing.QuoteDB(); }
+            return qdb.getQuoteEmail(quote);
+        }
+
+        public void updateQuoteEmail(int quote, string email)
+        {
+            if (qdb == null) { qdb = new sts_processing.QuoteDB(); }
+            qdb.updateQuoteEmail(quote,email);
+        }
     }
 }

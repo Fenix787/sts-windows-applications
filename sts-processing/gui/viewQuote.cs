@@ -40,6 +40,9 @@ namespace sts_processing
             // populate discount
             discountTextBox.Text = pqc.getDiscount(inquote).ToString();
 
+            // populate email address
+            emailAddressTextBox.Text = pqc.getQuoteEmail(quote);
+
             // populate rest of quote data
             populateItems();
             populateNotes();
@@ -122,11 +125,14 @@ namespace sts_processing
             // store discount
             pqc.updateDiscount(quote, Convert.ToDouble(discountTextBox.Text));
 
+            // store email address
+            pqc.updateQuoteEmail(quote, emailAddressTextBox.Text);
+
             // update quote total
             populateTotal();
 
             // display confirmation message
-            MessageBox.Show("Discount updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            MessageBox.Show("Quote updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
         }
 
@@ -140,6 +146,9 @@ namespace sts_processing
         {
             // change status of quote
             pqc.finalizeQuote(quote);
+
+            // send email to customer
+            pqc.sendEmail(pqc.getQuoteEmail(quote), quote);
 
             // reload quote list on slq
             slq.populateQuotes();
@@ -199,5 +208,6 @@ namespace sts_processing
                 }
             }
         }
+
     }
 }

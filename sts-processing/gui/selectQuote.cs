@@ -18,8 +18,6 @@ namespace sts_processing
         // create viewQuote form
         public viewQuote quoteForm;
 
-        private string selectedCustomer;
-
         public selectQuote()
         {
             InitializeComponent();

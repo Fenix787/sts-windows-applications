@@ -125,5 +125,16 @@ namespace sts_processing
             executeUpdate("UPDATE Quote SET status='2' WHERE id='" + quote + "';");
         }
 
+        public string getQuoteEmail(int quote)
+        {
+            cmd = new MySqlCommand("SELECT email FROM Quote WHERE id='" + quote + "';", db);
+            return Convert.ToString(cmd.ExecuteScalar());
+        }
+
+        public void updateQuoteEmail(int quote, string email)
+        {
+            executeUpdate("UPDATE Quote SET email='" + email + "' WHERE id='" + quote + "';");
+        }
+
     }
 }

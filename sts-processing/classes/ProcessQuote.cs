@@ -81,12 +81,28 @@ namespace sts_processing
             if (qdb == null) { qdb = new sts_processing.QuoteDB(); }
             qdb.finalizeQuote(quote);
         }
-        public void sendEmail()
+
+        public string getQuoteEmail(int quote)
+        {
+            if (qdb == null) { qdb = new sts_processing.QuoteDB(); }
+            return qdb.getQuoteEmail(quote);
+        }
+
+        public void updateQuoteEmail(int quote, string email)
+        {
+            if (qdb == null) { qdb = new sts_processing.QuoteDB(); }
+            qdb.updateQuoteEmail(quote,email);
+        }
+
+        public void sendEmail(string quoteEmail, int quote)
         {
             MailMessage message;
             SmtpClient smtp;
             message = new MailMessage();
-            message.Subject = ";
+            message.From = new MailAddress("ug4csci467@gmail.com");
+            message.To.Add(quoteEmail);
+            message.Subject = "Quote Processed";
+            message.Body = "Your quote " + quote + " has been processed and is ready to be converted to a purcahse order. Please contat cusotmer service.";
 
             smtp = new SmtpClient("smtp.gmail.com", 587);
 
@@ -95,8 +111,6 @@ namespace sts_processing
             smtp.Credentials = new NetworkCredential("ug4csci467@gmail.com", "huskies467");
 
             smtp.SendAsync(message, message.Subject);
-
-            smtp.SendCompleted += new SendCompletedEventHandler(smtp_SendCompleted);
 
         }
     }
