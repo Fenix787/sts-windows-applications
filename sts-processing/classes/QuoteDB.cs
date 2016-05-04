@@ -49,9 +49,17 @@ namespace sts_processing
             return getData();
         }
 
-        public DataTable getQuoteList(int status, string cust)
+        public DataTable getQuoteList(int instatus, string incust)
         {
-            execute("SELECT id FROM Quote WHERE cust='" + cust + "' AND status='" + status + "';");
+            cmd = new MySqlCommand("SELECT id FROM Quote WHERE cust=@CUST AND status=@STATUS;", db);
+
+            cmd.Parameters.AddWithValue("@CUST",incust);
+            cmd.Parameters.AddWithValue("@STATUS", instatus);
+
+            Console.WriteLine(cmd.CommandText);
+
+            adapter = new MySqlDataAdapter();
+            adapter.SelectCommand = cmd;
             return getData();
         }
 

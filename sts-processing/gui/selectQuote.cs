@@ -49,7 +49,7 @@ namespace sts_processing
         private void customerList_SelectedValueChanged(object sender, EventArgs e)
         {
             DataRowView drv = customerList.SelectedItem as DataRowView;
-            populateQuotes(drv.Row["cust"] as string);
+            if (drv != null) { populateQuotes(drv.Row["cust"] as string); }
         }
 
         private void selectButton_Click(object sender, EventArgs e)

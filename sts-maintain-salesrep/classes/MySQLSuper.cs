@@ -82,8 +82,7 @@ namespace sts_maintain_salesrep
         // execute the query and store in cmd
         public void execute(string inputQuery)
         {
-            query = inputQuery;
-            cmd = new MySqlCommand(query, db);
+            cmd = new MySqlCommand(inputQuery, db);
 
             adapter = new MySqlDataAdapter();
             adapter.SelectCommand = cmd;

@@ -30,6 +30,7 @@ namespace sts_processing
 
         public void populateQuote(int inquote,string title)
         {
+            Console.WriteLine("quote : " + inquote);
             quote = inquote;
             Text = title;
             discountTextBox.Text = pqc.getDiscount(quote).ToString();
@@ -120,6 +121,7 @@ namespace sts_processing
         {
             pqc.finalizeQuote(quote);
             slq.populateCustomers();
+            slq.populateQuotes("");
             slq.Update();
             Hide();
         }
