@@ -23,10 +23,19 @@ namespace sts_processing
             return qdb.getQuoteTotal(quote);
         }
 
-        public DataTable getQuoteList(string cust)
+        public DataTable getQuoteList()
         {
             if (qdb == null) { qdb = new QuoteDB(); }
-            return qdb.getQuoteList(1,cust);
+
+            // get only quotes that have been closed
+            DataTable quotes = qdb.getQuoteList(1);
+
+            // add id to cust field
+            foreach (DataRow row in quotes.Rows)
+            {
+                row["cust"] = row["id"] + " | " + row["cust"];
+            }
+            return quotes;
         }
 
         public DataSet getItems(int quote)

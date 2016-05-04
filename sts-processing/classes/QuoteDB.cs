@@ -65,6 +65,7 @@ namespace sts_processing
 
         public double getQuoteTotal(int quote)
         {
+            Console.WriteLine(quote);
             // get item totals
             cmd = new MySqlCommand("SELECT SUM(price*qty) FROM Item WHERE quote='" + quote + "';", db);
             double total = Convert.ToDouble(cmd.ExecuteScalar());

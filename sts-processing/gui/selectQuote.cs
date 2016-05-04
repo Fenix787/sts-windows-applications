@@ -23,40 +23,26 @@ namespace sts_processing
         public selectQuote()
         {
             InitializeComponent();
-            populateCustomers();
+            populateQuotes();
 
             // create viewQuote form
             quoteForm = new viewQuote(pqc, this);
     }
 
-        public void populateCustomers()
+        public void populateQuotes()
         {
-            customerList.DataSource = pqc.getCustomerList();
-            customerList.DisplayMember = "cust";
-            customerList.ValueMember = "cust";
-            customerList.Update();
-        }
-
-        public void populateQuotes(string cust)
-        {
-            selectedCustomer = cust;
-            quoteList.DataSource = pqc.getQuoteList(cust);
-            quoteList.DisplayMember = "id";
+            quoteList.DataSource = pqc.getQuoteList();
+            quoteList.DisplayMember = "cust";
             quoteList.ValueMember = "id";
             quoteList.Update();
-        }
-
-        private void customerList_SelectedValueChanged(object sender, EventArgs e)
-        {
-            DataRowView drv = customerList.SelectedItem as DataRowView;
-            if (drv != null) { populateQuotes(drv.Row["cust"] as string); }
         }
 
         private void selectButton_Click(object sender, EventArgs e)
         {
             DataRowView drv = quoteList.SelectedItem as DataRowView;
             if (quoteForm.IsDisposed) { quoteForm = new viewQuote(pqc, this); }
-            quoteForm.populateQuote((int) drv.Row["id"], (drv.Row["id"].ToString() + " | " + selectedCustomer));
+            Console.WriteLine("quote : " + drv.Row["id"]);
+            quoteForm.populateQuote((int) drv.Row["id"], drv.Row["cust"].ToString());
             quoteForm.Update();
             quoteForm.Show();
         }

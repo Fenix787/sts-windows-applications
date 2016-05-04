@@ -34,6 +34,9 @@ namespace sts_processing
             // set form title
             Text = title;
 
+            // set quote
+            quote = inquote;
+
             // populate discount
             discountTextBox.Text = pqc.getDiscount(inquote).ToString();
 
@@ -139,8 +142,7 @@ namespace sts_processing
             pqc.finalizeQuote(quote);
 
             // reload quote list on slq
-            slq.populateCustomers();
-            slq.populateQuotes("");
+            slq.populateQuotes();
             slq.Update();
 
             // hide form
