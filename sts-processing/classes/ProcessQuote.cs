@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
+using System.Net.Mail;
 
 namespace sts_processing
 {
@@ -78,6 +80,24 @@ namespace sts_processing
         {
             if (qdb == null) { qdb = new sts_processing.QuoteDB(); }
             qdb.finalizeQuote(quote);
+        }
+        public void sendEmail()
+        {
+            MailMessage message;
+            SmtpClient smtp;
+            message = new MailMessage();
+            message.Subject = ";
+
+            smtp = new SmtpClient("smtp.gmail.com", 587);
+
+            smtp.EnableSsl = true;
+
+            smtp.Credentials = new NetworkCredential("ug4csci467@gmail.com", "huskies467");
+
+            smtp.SendAsync(message, message.Subject);
+
+            smtp.SendCompleted += new SendCompletedEventHandler(smtp_SendCompleted);
+
         }
     }
 }
